@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harsha Vardhan DVS - Game Designer</title>
-    <meta name="description" content="Professional portfolio of a Game Designer & Developer.">
+    <title>Harsha Vardhan DVS - Game Designer Portfolio</title>
+    <meta name="description" content="Professional portfolio of Harsha Vardhan DVS, Game Designer & Developer.">
     <!-- Clean minimal typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <!-- Minimal Background -->
+<body data-theme="cosmic">
+    <!-- Dynamic Live Background Theme -->
     <div class="bg-abstract">
+        <canvas id="live-bg-canvas"></canvas>
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
@@ -27,8 +28,32 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#cv">CV</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            
+            <!-- Live Theme Selector -->
+            <div class="theme-switcher-wrapper">
+                <button class="theme-btn" id="themeToggleBtn" aria-label="Toggle Live Theme Menu" title="Switch Live Background Theme">
+                    <span class="theme-sparkle">✨</span>
+                    <span class="theme-text">Live Theme</span>
+                    <span class="theme-arrow">▾</span>
+                </button>
+                <div class="theme-dropdown" id="themeDropdown">
+                    <button class="theme-opt active" data-theme="cosmic">
+                        <span class="opt-badge cosmic-bg"></span> 🌌 Cosmic Aurora
+                    </button>
+                    <button class="theme-opt" data-theme="cyberpunk">
+                        <span class="opt-badge cyberpunk-bg"></span> ⚡ Cyberpunk Neon
+                    </button>
+                    <button class="theme-opt" data-theme="synthwave">
+                        <span class="opt-badge synthwave-bg"></span> 👾 Synthwave Sunset
+                    </button>
+                    <button class="theme-opt" data-theme="matrix">
+                        <span class="opt-badge matrix-bg"></span> 🟢 Matrix Arcade
+                    </button>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -38,9 +63,10 @@
         <section id="hero" class="hero-section">
             <div class="hero-content">
                 <h1 class="title">Harsha Vardhan DVS</h1>
-                <h2 class="subtitle">Game Designer &amp; crafting immersive worlds</h2>
+                <h2 class="subtitle">Game Designer &amp; Level Systems Specialist</h2>
                 <div class="hero-cta">
                     <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#cv" class="btn btn-secondary">View My CV</a>
                     <a href="#contact" class="btn btn-secondary">Get in Touch</a>
                 </div>
             </div>
@@ -59,8 +85,8 @@
                             <span class="stat-label">Years Experience</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number">2</span>
-                            <span class="stat-label">Projects</span>
+                            <span class="stat-number">3+</span>
+                            <span class="stat-label">Featured Projects</span>
                         </div>
                     </div>
                 </div>
@@ -71,40 +97,58 @@
         <section id="projects" class="projects-section">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
-                <!-- Project 1 -->
+                <!-- Project 1: Rogue Doodles -->
                 <div class="project-card glass reveal">
                     <div class="project-img">
-                        
+                        <img src="assets/Board.png" alt="Rogue Doodles">
                     </div>
                     <div class="project-info">
                         <h3>Rogue Doodles</h3>
                         <p class="project-role">2D Concept Artist, Designer</p>
                         <p class="project-desc">A charming, character-driven aesthetic adventure. Focused on creative expression, unique art styles, and quirky design.</p>
-                        <button onclick="openModal('modal-rogue')" class="btn btn-primary btn-sm">View Details</button>
+                        <div class="project-card-actions">
+                            <button onclick="openModal('modal-rogue')" class="btn btn-primary btn-sm">View Details</button>
+                        </div>
                     </div>
                 </div>
-                <!-- Project 2 -->
+
+                <!-- Project 2: Road To Ninja -->
                 <div class="project-card glass reveal" style="transition-delay: 0.1s;">
                     <div class="project-img">
-                        <img src="assets/image.png" alt="Road To Ninja">
+                        <a href="https://itiskiruhere.itch.io/road-to-ninja" target="_blank" rel="noopener noreferrer" title="Play Road to Ninja on Itch.io">
+                            <img src="assets/image.png" alt="Road To Ninja">
+                        </a>
                     </div>
                     <div class="project-info">
                         <h3>Road To Ninja</h3>
                         <p class="project-role">Game Designer, Level Designer, Systems Designer</p>
                         <p class="project-desc">An intense action-adventure journey. Crafted complex level layouts, progression systems, and balanced combat mechanics.</p>
-                        <button onclick="openModal('modal-ninja')" class="btn btn-primary btn-sm">View Details</button>
+                        <div class="project-card-actions">
+                            <button onclick="openModal('modal-ninja')" class="btn btn-primary btn-sm">View Details</button>
+                            <a href="https://itiskiruhere.itch.io/road-to-ninja" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm itch-btn">
+                                🎮 Play on Itch.io ↗
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <!-- Project 3 -->
+
+                <!-- Project 3: Roblox Platformer -->
                 <div class="project-card glass reveal" style="transition-delay: 0.2s;">
                     <div class="project-img">
-                        <img src="assets/Roblox%20Images/Screenshot%202026-10-07%20223259.png" alt="Roblox Platformer">
+                        <a href="https://ro.blox.com/Ebh5?af_dp=roblox%3A%2F%2Fnavigation%2Fgame_details%3FgameId%3D10434198708&af_web_dp=https%3A%2F%2Fwww.roblox.com%2Fgames%2F90443095246234" target="_blank" rel="noopener noreferrer" title="Play on Roblox">
+                            <img src="assets/Roblox%20Images/Screenshot%202026-10-07%20223259.png" alt="Roblox Platformer">
+                        </a>
                     </div>
                     <div class="project-info">
                         <h3>Roblox Platformer</h3>
                         <p class="project-role">Game Designer, Level Designer</p>
                         <p class="project-desc">A fast-paced platforming experience crafted in Roblox Studio. Designed engaging obstacle courses and dynamic mechanics.</p>
-                        <button onclick="openModal('modal-roblox')" class="btn btn-primary btn-sm">View Details</button>
+                        <div class="project-card-actions">
+                            <button onclick="openModal('modal-roblox')" class="btn btn-primary btn-sm">View Details</button>
+                            <a href="https://ro.blox.com/Ebh5?af_dp=roblox%3A%2F%2Fnavigation%2Fgame_details%3FgameId%3D10434198708&af_web_dp=https%3A%2F%2Fwww.roblox.com%2Fgames%2F90443095246234" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm roblox-btn">
+                                🟥 Play on Roblox ↗
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,23 +156,112 @@
 
         <!-- Skills Section -->
         <section id="skills" class="skills-section">
-            <h2 class="section-title reveal">Skills & Expertise</h2>
+            <h2 class="section-title reveal">Skills &amp; Expertise</h2>
             <div class="skills-container">
                 <div class="skills-category glass reveal" style="transition-delay: 0s;">
                     <h3>Game Engines</h3>
                     <ul class="skills-list">
                         <li>Unity 3D</li>
                         <li>Unreal Engine 5</li>
+                        <li>Roblox Studio</li>
                     </ul>
                 </div>
-                <!-- Programming tab removed -->
                 <div class="skills-category glass reveal" style="transition-delay: 0.1s;">
-                    <h3>Design & Documentation</h3>
+                    <h3>Design &amp; Documentation</h3>
                     <ul class="skills-list">
-                        <li>System Design</li>
-                        <li>Level Design</li>
-                        <li>Game Design Documents</li>
+                        <li>System Design &amp; Balancing</li>
+                        <li>Level &amp; Spatial Design</li>
+                        <li>Game Design Documents (GDD)</li>
                     </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CV / Resume Section -->
+        <section id="cv" class="cv-section">
+            <div class="cv-container">
+                <h2 class="section-title reveal">Curriculum Vitae</h2>
+                <p class="cv-subtitle reveal">Harsha Vardhan DVS &mdash; Game Designer Resume</p>
+
+                <div class="cv-actions reveal">
+                    <a href="assets/DVS%20Harsha%20Vardhan%20-%20CV%20--1.pdf" download="DVS_Harsha_Vardhan_CV.pdf" class="btn btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Download CV (PDF)
+                    </a>
+                    <a href="assets/DVS%20Harsha%20Vardhan%20-%20CV%20--1.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 6px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        Open Fullscreen PDF ↗
+                    </a>
+                </div>
+
+                <div class="cv-grid">
+                    <!-- Left Column: Interactive PDF Embedded Viewer -->
+                    <div class="cv-preview-card glass reveal">
+                        <div class="cv-preview-header">
+                            <div class="cv-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="cv-filename">DVS Harsha Vardhan - CV.pdf</span>
+                        </div>
+                        <div class="cv-embed-container">
+                            <iframe src="assets/DVS%20Harsha%20Vardhan%20-%20CV%20--1.pdf#toolbar=0" title="Harsha Vardhan CV PDF" width="100%" height="620px">
+                                <div class="pdf-fallback">
+                                    <p>Your browser doesn't support embedded PDFs.</p>
+                                    <a href="assets/DVS%20Harsha%20Vardhan%20-%20CV%20--1.pdf" target="_blank" class="btn btn-primary">Open CV PDF Document</a>
+                                </div>
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive Resume Summary -->
+                    <div class="cv-summary-card glass reveal" style="transition-delay: 0.15s;">
+                        <div class="cv-summary-header">
+                            <h3>Resume Overview</h3>
+                            <span class="cv-badge">Game Designer</span>
+                        </div>
+
+                        <div class="cv-summary-block">
+                            <div class="cv-block-icon">🎯</div>
+                            <div class="cv-block-body">
+                                <h4>Core Specializations</h4>
+                                <p>Systems design, gameplay mechanics tuning, level flow engineering, rapid prototyping, and immersive world crafting.</p>
+                            </div>
+                        </div>
+
+                        <div class="cv-summary-block">
+                            <div class="cv-block-icon">🕹️</div>
+                            <div class="cv-block-body">
+                                <h4>Game Development Skills</h4>
+                                <p>Designing combat & progression loops, level blockouts, spatial pacing, character abilities, and user experience (UX) mapping.</p>
+                            </div>
+                        </div>
+
+                        <div class="cv-summary-block">
+                            <div class="cv-block-icon">📄</div>
+                            <div class="cv-block-body">
+                                <h4>Game Design Documents (GDD)</h4>
+                                <p>Comprehensive design specification authoring, mechanic breakdowns, logic trees, balancing spreadsheets, and narrative design.</p>
+                            </div>
+                        </div>
+
+                        <div class="cv-summary-block">
+                            <div class="cv-block-icon">🚀</div>
+                            <div class="cv-block-body">
+                                <h4>Tool Proficiency</h4>
+                                <div class="cv-tags-list">
+                                    <span class="cv-tag">Unity 3D</span>
+                                    <span class="cv-tag">Unreal Engine 5</span>
+                                    <span class="cv-tag">Roblox Studio</span>
+                                    <span class="cv-tag">System Design</span>
+                                    <span class="cv-tag">Level Blockouts</span>
+                                    <span class="cv-tag">GDD Authoring</span>
+                                    <span class="cv-tag">Mechanics Tuning</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -149,6 +282,7 @@
     </footer>
 
     <!-- Modals -->
+    <!-- Modal 1: Rogue Doodles -->
     <div id="modal-rogue" class="modal-overlay" onclick="closeModal(event, 'modal-rogue')">
         <div class="modal-content glass">
             <span class="close-btn" onclick="closeModal(event, 'modal-rogue')">&times;</span>
@@ -175,12 +309,20 @@
         </div>
     </div>
 
+    <!-- Modal 2: Road to Ninja -->
     <div id="modal-ninja" class="modal-overlay" onclick="closeModal(event, 'modal-ninja')">
         <div class="modal-content glass">
             <span class="close-btn" onclick="closeModal(event, 'modal-ninja')">&times;</span>
-            <h2 class="section-title" style="margin-bottom: 20px;">Road To Ninja</h2>
+            <h2 class="section-title" style="margin-bottom: 15px;">Road To Ninja</h2>
             <p class="project-role" style="text-align: center;">Game Designer, Level Designer, Systems Designer</p>
             <p class="modal-desc" style="text-align: center;">An intense action-adventure journey. Crafted complex level layouts, progression systems, and balanced combat mechanics. Level design prioritized vertical movement flow and dynamic enemy encounters.</p>
+            
+            <div class="modal-cta-box" style="text-align: center; margin-bottom: 30px;">
+                <a href="https://itiskiruhere.itch.io/road-to-ninja" target="_blank" rel="noopener noreferrer" class="btn btn-primary itch-modal-btn">
+                    🎮 Play Road to Ninja on Itch.io ↗
+                </a>
+            </div>
+
             <div class="gallery-wrapper">
                 <button class="gallery-btn prev" onclick="scrollGallery(-1, this)">&lsaquo;</button>
                 <div class="modal-gallery">
@@ -197,12 +339,20 @@
         </div>
     </div>
 
+    <!-- Modal 3: Roblox Platformer -->
     <div id="modal-roblox" class="modal-overlay" onclick="closeModal(event, 'modal-roblox')">
         <div class="modal-content glass">
             <span class="close-btn" onclick="closeModal(event, 'modal-roblox')">&times;</span>
-            <h2 class="section-title" style="margin-bottom: 20px;">Roblox Platformer</h2>
+            <h2 class="section-title" style="margin-bottom: 15px;">Roblox Platformer</h2>
             <p class="project-role" style="text-align: center;">Game Designer, Level Designer</p>
-            <p class="modal-desc" style="text-align: center;">A fast-paced platforming experience crafted entirely within Roblox Studio. Detailed breakdown of level design, obstacle layout, and pacing to follow.</p>
+            <p class="modal-desc" style="text-align: center;">A fast-paced platforming experience crafted entirely within Roblox Studio. Detailed breakdown of level design, obstacle layout, and pacing.</p>
+            
+            <div class="modal-cta-box" style="text-align: center; margin-bottom: 30px;">
+                <a href="https://ro.blox.com/Ebh5?af_dp=roblox%3A%2F%2Fnavigation%2Fgame_details%3FgameId%3D10434198708&af_web_dp=https%3A%2F%2Fwww.roblox.com%2Fgames%2F90443095246234" target="_blank" rel="noopener noreferrer" class="btn btn-primary roblox-modal-btn">
+                    🟥 Play Experience on Roblox ↗
+                </a>
+            </div>
+
             <div class="gallery-wrapper">
                 <button class="gallery-btn prev" onclick="scrollGallery(-1, this)">&lsaquo;</button>
                 <div class="modal-gallery">

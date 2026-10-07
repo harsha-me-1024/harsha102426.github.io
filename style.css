@@ -7,6 +7,11 @@
     --text-muted: #ded4e3;
     --apple-blue: #e066ff;
     
+    /* Live Theme Blob Defaults */
+    --blob1-color: #ff3366;
+    --blob2-color: #00c3ff;
+    --blob3-color: #ffcc00;
+    
     /* Perfect iOS Glass Formula */
     --glass-bg: rgba(45, 15, 65, 0.35); 
     --glass-border: rgba(255, 255, 255, 0.15);
@@ -17,6 +22,43 @@
     
     /* Apple smooth interactive transition curve */
     --smooth-easing: cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+/* Live Theme Presets */
+body[data-theme="cosmic"] {
+    --bg-color: #0b0213;
+    --apple-blue: #e066ff;
+    --glass-bg: rgba(45, 15, 65, 0.35);
+    --blob1-color: #ff3366;
+    --blob2-color: #00c3ff;
+    --blob3-color: #ffcc00;
+}
+
+body[data-theme="cyberpunk"] {
+    --bg-color: #05050d;
+    --apple-blue: #00f0ff;
+    --glass-bg: rgba(15, 25, 55, 0.45);
+    --blob1-color: #ff0055;
+    --blob2-color: #00f0ff;
+    --blob3-color: #ffe600;
+}
+
+body[data-theme="synthwave"] {
+    --bg-color: #120318;
+    --apple-blue: #ff007f;
+    --glass-bg: rgba(50, 10, 50, 0.4);
+    --blob1-color: #ff4500;
+    --blob2-color: #9400d3;
+    --blob3-color: #ff8c00;
+}
+
+body[data-theme="matrix"] {
+    --bg-color: #02120a;
+    --apple-blue: #00ff88;
+    --glass-bg: rgba(10, 45, 25, 0.4);
+    --blob1-color: #00ff66;
+    --blob2-color: #0088ff;
+    --blob3-color: #00ffcc;
 }
 
 * {
@@ -30,13 +72,14 @@ html {
 }
 
 body {
-    background-color: transparent;
+    background-color: var(--bg-color);
     color: var(--text-main);
     font-family: var(--font-body);
     font-weight: 500;
     overflow-x: hidden;
     line-height: 1.6;
     font-size: 1.05rem;
+    transition: background-color 0.8s ease;
 }
 
 /* Base purely black backdrop */
@@ -48,7 +91,18 @@ body {
     height: 100vh;
     z-index: -2;
     overflow: hidden;
-    background: linear-gradient(135deg, #0b1021 0%, #1a0b2e 100%);
+    background: linear-gradient(135deg, var(--bg-color) 0%, #000000 100%);
+    transition: background 0.8s ease;
+}
+
+#live-bg-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
 }
 
 /* Massive, vivid vibrant blobs so the frosted glass has something beautiful to refract */
@@ -59,12 +113,13 @@ body {
     border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
     animation: float 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1), morph 15s infinite ease-in-out;
     will-change: transform, border-radius; /* hardware acceleration for smoothness */
+    transition: background 0.8s ease;
 }
 
 .blob-1 {
     width: 60vw;
     height: 60vw;
-    background: #ff3366; /* Neon Pink */
+    background: var(--blob1-color); /* Theme Color 1 */
     top: -10%;
     left: -10%;
 }
@@ -72,7 +127,7 @@ body {
 .blob-2 {
     width: 55vw;
     height: 55vw;
-    background: #00c3ff; /* Electric Blue */
+    background: var(--blob2-color); /* Theme Color 2 */
     bottom: -20%;
     right: -10%;
     animation-delay: -5s;
@@ -81,7 +136,7 @@ body {
 .blob-3 {
     width: 45vw;
     height: 45vw;
-    background: #ffcc00; /* Vibrant Yellow/Orange */
+    background: var(--blob3-color); /* Theme Color 3 */
     top: 30%;
     left: 40%;
     transform: translateX(-50%);
@@ -670,6 +725,323 @@ section {
     transform: scale(1.02);
 }
 
+/* Theme Switcher in Navbar */
+.theme-switcher-wrapper {
+    position: relative;
+    margin-left: 20px;
+}
+
+.theme-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s var(--smooth-easing);
+}
+
+.theme-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+}
+
+.theme-sparkle {
+    font-size: 1rem;
+}
+
+.theme-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 220px;
+    background: rgba(20, 10, 30, 0.92);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    z-index: 500;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.theme-dropdown.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.theme-opt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+}
+
+.theme-opt:hover, .theme-opt.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.opt-badge {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.cosmic-bg { background: linear-gradient(135deg, #ff3366, #00c3ff); }
+.cyberpunk-bg { background: linear-gradient(135deg, #ff0055, #00f0ff); }
+.synthwave-bg { background: linear-gradient(135deg, #ff4500, #9400d3); }
+.matrix-bg { background: linear-gradient(135deg, #00ff66, #0088ff); }
+
+/* Project Card Actions & Game Links */
+.project-card-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.itch-btn, .roblox-btn {
+    border-color: rgba(255, 255, 255, 0.25);
+    transition: all 0.3s var(--smooth-easing);
+}
+
+.itch-btn:hover {
+    background: #fa5c5c;
+    border-color: #fa5c5c;
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(250, 92, 92, 0.4);
+    transform: scale(1.04);
+}
+
+.roblox-btn:hover {
+    background: #00a2ff;
+    border-color: #00a2ff;
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 162, 255, 0.4);
+    transform: scale(1.04);
+}
+
+.itch-modal-btn:hover {
+    background: #fa5c5c;
+    border-color: #fa5c5c;
+    box-shadow: 0 8px 25px rgba(250, 92, 92, 0.5);
+}
+
+.roblox-modal-btn:hover {
+    background: #00a2ff;
+    border-color: #00a2ff;
+    box-shadow: 0 8px 25px rgba(0, 162, 255, 0.5);
+}
+
+/* CV / Resume Section */
+.cv-section {
+    flex-direction: column;
+    min-height: auto;
+    padding: 100px 10%;
+}
+
+.cv-container {
+    max-width: 1250px;
+    width: 100%;
+}
+
+.cv-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-top: -40px;
+    margin-bottom: 40px;
+}
+
+.cv-actions {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.cv-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 35px;
+    align-items: stretch;
+}
+
+.cv-preview-card {
+    border-radius: 36px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.cv-preview-header {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cv-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27c93f; }
+
+.cv-filename {
+    margin-left: 18px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: monospace;
+}
+
+.cv-embed-container {
+    flex: 1;
+    min-height: 580px;
+    background: #1a1525;
+}
+
+.cv-embed-container iframe {
+    border: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+}
+
+.pdf-fallback {
+    padding: 40px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.cv-summary-card {
+    border-radius: 36px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.cv-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 18px;
+}
+
+.cv-summary-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.cv-badge {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--apple-blue);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cv-summary-block {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.cv-block-icon {
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.cv-block-body h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-main);
+}
+
+.cv-block-body p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.cv-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.cv-tag {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.82rem;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+    .cv-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -683,4 +1055,11 @@ section {
         margin-left: 0;
         margin-top: 15px;
     }
+    .theme-text {
+        display: none;
+    }
+    .theme-btn {
+        padding: 8px 12px;
+    }
 }
+
