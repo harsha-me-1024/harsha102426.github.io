@@ -95,6 +95,18 @@
                         <button onclick="openModal('modal-ninja')" class="btn btn-primary btn-sm">View Details</button>
                     </div>
                 </div>
+                <!-- Project 3 -->
+                <div class="project-card glass reveal" style="transition-delay: 0.2s;">
+                    <div class="project-img">
+                        <img src="assets/Roblox%20Images/Screenshot%202026-10-07%20223259.png" alt="Roblox Platformer">
+                    </div>
+                    <div class="project-info">
+                        <h3>Roblox Platformer</h3>
+                        <p class="project-role">Game Designer, Level Designer</p>
+                        <p class="project-desc">A fast-paced platforming experience crafted in Roblox Studio. Designed engaging obstacle courses and dynamic mechanics.</p>
+                        <button onclick="openModal('modal-roblox')" class="btn btn-primary btn-sm">View Details</button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -179,6 +191,25 @@
                     <img src="assets/Screenshot_2026-02-18_204314.png" alt="Screenshot 5">
                     <img src="assets/Screenshot_2026-02-18_204324.png" alt="Screenshot 6">
                     <img src="assets/Screenshot_2026-02-18_204332.png" alt="Screenshot 7">
+                </div>
+                <button class="gallery-btn next" onclick="scrollGallery(1, this)">&rsaquo;</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-roblox" class="modal-overlay" onclick="closeModal(event, 'modal-roblox')">
+        <div class="modal-content glass">
+            <span class="close-btn" onclick="closeModal(event, 'modal-roblox')">&times;</span>
+            <h2 class="section-title" style="margin-bottom: 20px;">Roblox Platformer</h2>
+            <p class="project-role" style="text-align: center;">Game Designer, Level Designer</p>
+            <p class="modal-desc" style="text-align: center;">A fast-paced platforming experience crafted entirely within Roblox Studio. Detailed breakdown of level design, obstacle layout, and pacing to follow.</p>
+            <div class="gallery-wrapper">
+                <button class="gallery-btn prev" onclick="scrollGallery(-1, this)">&lsaquo;</button>
+                <div class="modal-gallery">
+                    <img src="assets/Roblox%20Images/Screenshot%202026-10-07%20223259.png" alt="Roblox Screenshot 1">
+                    <img src="assets/Roblox%20Images/Screenshot%202026-10-07%20223746.png" alt="Roblox Screenshot 2">
+                    <img src="assets/Roblox%20Images/Screenshot%202026-10-07%20223837.png" alt="Roblox Screenshot 3">
+                    <img src="assets/Roblox%20Images/Screenshot%202026-10-07%20223959.png" alt="Roblox Screenshot 4">
                 </div>
                 <button class="gallery-btn next" onclick="scrollGallery(1, this)">&rsaquo;</button>
             </div>

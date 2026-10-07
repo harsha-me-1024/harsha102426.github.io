@@ -48,7 +48,7 @@ body {
     height: 100vh;
     z-index: -2;
     overflow: hidden;
-    background: linear-gradient(135deg, #180521 0%, #350849 100%);
+    background: linear-gradient(135deg, #0b1021 0%, #1a0b2e 100%);
 }
 
 /* Massive, vivid vibrant blobs so the frosted glass has something beautiful to refract */
@@ -64,7 +64,7 @@ body {
 .blob-1 {
     width: 60vw;
     height: 60vw;
-    background: #ff2a54; /* Apple Music Pink */
+    background: #ff3366; /* Neon Pink */
     top: -10%;
     left: -10%;
 }
@@ -72,7 +72,7 @@ body {
 .blob-2 {
     width: 55vw;
     height: 55vw;
-    background: #0a84ff; /* Apple Blue */
+    background: #00c3ff; /* Electric Blue */
     bottom: -20%;
     right: -10%;
     animation-delay: -5s;
@@ -81,7 +81,7 @@ body {
 .blob-3 {
     width: 45vw;
     height: 45vw;
-    background: #bf5af2; /* Apple Purple */
+    background: #ffcc00; /* Vibrant Yellow/Orange */
     top: 30%;
     left: 40%;
     transform: translateX(-50%);
