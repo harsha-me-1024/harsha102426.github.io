@@ -42,10 +42,17 @@ body {
     overflow-x: hidden;
     line-height: 1.6;
     font-size: 1.05rem;
-    transition: background-color 0.8s ease;
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    font-weight: 500;
+    overflow-x: hidden;
+    line-height: 1.6;
+    font-size: 1.05rem;
 }
 
-/* Base purely black backdrop */
+/* Base dark obsidian backdrop - Instant Zero-Delay Load */
 .bg-abstract {
     position: fixed;
     top: 0;
@@ -54,8 +61,8 @@ body {
     height: 100vh;
     z-index: -2;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--bg-color) 0%, #000000 100%);
-    transition: background 0.8s ease;
+    background: radial-gradient(ellipse at 50% 20%, #110820 0%, #060209 70%, #030105 100%);
+    transform: translateZ(0);
 }
 
 #live-bg-canvas {
@@ -66,23 +73,24 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: -1;
+    transform: translateZ(0);
 }
 
-/* Massive, vivid vibrant blobs so the frosted glass has something beautiful to refract */
+/* Smooth ambient glow lights */
 .blob {
     position: absolute;
-    filter: blur(120px);
-    opacity: 0.6; 
+    filter: blur(140px);
+    opacity: 0.35; 
     border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
     animation: float 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1), morph 15s infinite ease-in-out;
-    will-change: transform, border-radius; /* hardware acceleration for smoothness */
-    transition: background 0.8s ease;
+    will-change: transform, border-radius;
+    transform: translateZ(0);
 }
 
 .blob-1 {
     width: 60vw;
     height: 60vw;
-    background: var(--blob1-color); /* Theme Color 1 */
+    background: var(--blob1-color);
     top: -10%;
     left: -10%;
 }
@@ -90,7 +98,7 @@ body {
 .blob-2 {
     width: 55vw;
     height: 55vw;
-    background: var(--blob2-color); /* Theme Color 2 */
+    background: var(--blob2-color);
     bottom: -20%;
     right: -10%;
     animation-delay: -5s;
@@ -99,7 +107,7 @@ body {
 .blob-3 {
     width: 45vw;
     height: 45vw;
-    background: var(--blob3-color); /* Theme Color 3 */
+    background: var(--blob3-color);
     top: 30%;
     left: 40%;
     transform: translateX(-50%);

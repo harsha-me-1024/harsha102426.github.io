@@ -1,7 +1,14 @@
 // script.js - Portfolio Interactive System
 
+// 1. Instantly initialize Ambient Live Background Canvas with 0ms waiting time
+if (document.readyState !== 'loading') {
+    initLiveCanvas();
+} else {
+    document.addEventListener('DOMContentLoaded', initLiveCanvas);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize Ambient Live Background Canvas
+    // Ensure canvas is active
     initLiveCanvas();
 
     // Smooth scrolling for anchor links
@@ -74,7 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Live Canvas Ambient Constellation System
 function initLiveCanvas() {
     const canvas = document.getElementById('live-bg-canvas');
-    if (!canvas) return;
+    if (!canvas || canvas.dataset.initialized === 'true') return;
+    canvas.dataset.initialized = 'true';
+    
     const ctx = canvas.getContext('2d');
 
     let width = canvas.width = window.innerWidth;
@@ -177,6 +186,7 @@ function initLiveCanvas() {
         requestAnimationFrame(loop);
     }
 
+    // Paint initial frame synchronously for 0ms instant display
     loop();
 }
 
