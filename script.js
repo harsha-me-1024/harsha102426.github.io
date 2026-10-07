@@ -1,19 +1,7 @@
-// script.js - Portfolio Interactive System & Live Themes
-
-const THEME_PALETTES = {
-    cosmic: ['rgba(255, 51, 102, ', 'rgba(0, 195, 255, ', 'rgba(224, 102, 255, ', 'rgba(255, 204, 0, '],
-    cyberpunk: ['rgba(255, 0, 85, ', 'rgba(0, 240, 255, ', 'rgba(255, 230, 0, ', 'rgba(120, 0, 255, '],
-    synthwave: ['rgba(255, 69, 0, ', 'rgba(148, 0, 211, ', 'rgba(255, 140, 0, ', 'rgba(255, 0, 127, '],
-    matrix: ['rgba(0, 255, 102, ', 'rgba(0, 136, 255, ', 'rgba(0, 255, 204, ', 'rgba(50, 255, 150, ']
-};
-
-let currentTheme = 'cosmic';
+// script.js - Portfolio Interactive System
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initialize Theme Switcher
-    initThemeSelector();
-
-    // 2. Initialize Live Background Canvas
+    // 1. Initialize Ambient Live Background Canvas
     initLiveCanvas();
 
     // Smooth scrolling for anchor links
@@ -62,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cursorGlow.style.display = 'none';
     }
 
-    // Scroll Reveal Observer with Staggering
+    // Scroll Reveal Observer
     const revealOptions = {
         threshold: 0.1,
         rootMargin: "0px 0px -50px 0px"
@@ -83,53 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Live Theme Selector Functionality
-function initThemeSelector() {
-    const toggleBtn = document.getElementById('themeToggleBtn');
-    const dropdown = document.getElementById('themeDropdown');
-    const options = document.querySelectorAll('.theme-opt');
-
-    if (!toggleBtn || !dropdown) return;
-
-    // Load saved theme from localStorage
-    const savedTheme = localStorage.getItem('portfolio_theme') || 'cosmic';
-    setTheme(savedTheme);
-
-    toggleBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdown.classList.toggle('show');
-    });
-
-    document.addEventListener('click', (e) => {
-        if (!dropdown.contains(e.target) && !toggleBtn.contains(e.target)) {
-            dropdown.classList.remove('show');
-        }
-    });
-
-    options.forEach(opt => {
-        opt.addEventListener('click', () => {
-            const theme = opt.getAttribute('data-theme');
-            setTheme(theme);
-            dropdown.classList.remove('show');
-        });
-    });
-
-    function setTheme(theme) {
-        currentTheme = theme;
-        document.body.setAttribute('data-theme', theme);
-        localStorage.setItem('portfolio_theme', theme);
-
-        options.forEach(opt => {
-            if (opt.getAttribute('data-theme') === theme) {
-                opt.classList.add('active');
-            } else {
-                opt.classList.remove('active');
-            }
-        });
-    }
-}
-
-// Live Canvas Constellation Particle System
+// Live Canvas Ambient Constellation System
 function initLiveCanvas() {
     const canvas = document.getElementById('live-bg-canvas');
     if (!canvas) return;
@@ -143,8 +85,16 @@ function initLiveCanvas() {
         height = canvas.height = window.innerHeight;
     });
 
-    const numParticles = Math.min(Math.floor((width * height) / 15000), 75);
+    const numParticles = Math.min(Math.floor((width * height) / 16000), 65);
     const particles = [];
+    
+    // Soft, dark ambient theme particle colors
+    const particleColors = [
+        'rgba(204, 102, 255, ', // Soft Violet
+        'rgba(0, 170, 230, ',   // Ambient Cyan
+        'rgba(230, 80, 160, ',  // Soft Magenta
+        'rgba(140, 100, 240, '  // Deep Indigo
+    ];
 
     class Particle {
         constructor() {
@@ -154,11 +104,11 @@ function initLiveCanvas() {
         reset() {
             this.x = Math.random() * width;
             this.y = Math.random() * height;
-            this.vx = (Math.random() - 0.5) * 0.7;
-            this.vy = (Math.random() - 0.5) * 0.7;
-            this.radius = Math.random() * 2 + 1;
-            this.alpha = Math.random() * 0.5 + 0.3;
-            this.colorIdx = Math.floor(Math.random() * 4);
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.radius = Math.random() * 1.8 + 0.8;
+            this.alpha = Math.random() * 0.4 + 0.2;
+            this.colorIdx = Math.floor(Math.random() * particleColors.length);
         }
 
         update(mouseX, mouseY) {
@@ -168,21 +118,20 @@ function initLiveCanvas() {
             if (this.x < 0 || this.x > width) this.vx *= -1;
             if (this.y < 0 || this.y > height) this.vy *= -1;
 
-            // Soft cursor interaction physics
+            // Subtle cursor interaction
             const dx = mouseX - this.x;
             const dy = mouseY - this.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 130) {
+            if (dist < 120) {
                 const angle = Math.atan2(dy, dx);
-                const force = (130 - dist) / 130;
-                this.x -= Math.cos(angle) * force * 1.2;
-                this.y -= Math.sin(angle) * force * 1.2;
+                const force = (120 - dist) / 120;
+                this.x -= Math.cos(angle) * force * 1.0;
+                this.y -= Math.sin(angle) * force * 1.0;
             }
         }
 
         draw() {
-            const colors = THEME_PALETTES[currentTheme] || THEME_PALETTES.cosmic;
-            const colorPrefix = colors[this.colorIdx];
+            const colorPrefix = particleColors[this.colorIdx];
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
             ctx.fillStyle = colorPrefix + this.alpha + ')';
@@ -204,7 +153,6 @@ function initLiveCanvas() {
     function loop() {
         ctx.clearRect(0, 0, width, height);
 
-        const colors = THEME_PALETTES[currentTheme] || THEME_PALETTES.cosmic;
         for (let i = 0; i < particles.length; i++) {
             particles[i].update(mouseX, mouseY);
             particles[i].draw();
@@ -214,13 +162,13 @@ function initLiveCanvas() {
                 const dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
-                if (dist < 130) {
+                if (dist < 120) {
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
-                    const alpha = (1 - dist / 130) * 0.22;
-                    ctx.strokeStyle = colors[0] + alpha + ')';
-                    ctx.lineWidth = 0.75;
+                    const alpha = (1 - dist / 120) * 0.15;
+                    ctx.strokeStyle = particleColors[0] + alpha + ')';
+                    ctx.lineWidth = 0.65;
                     ctx.stroke();
                 }
             }

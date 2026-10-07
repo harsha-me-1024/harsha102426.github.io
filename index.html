@@ -31,29 +31,6 @@
                 <li><a href="#cv">CV</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            
-            <!-- Live Theme Selector -->
-            <div class="theme-switcher-wrapper">
-                <button class="theme-btn" id="themeToggleBtn" aria-label="Toggle Live Theme Menu" title="Switch Live Background Theme">
-                    <span class="theme-sparkle">✨</span>
-                    <span class="theme-text">Live Theme</span>
-                    <span class="theme-arrow">▾</span>
-                </button>
-                <div class="theme-dropdown" id="themeDropdown">
-                    <button class="theme-opt active" data-theme="cosmic">
-                        <span class="opt-badge cosmic-bg"></span> 🌌 Cosmic Aurora
-                    </button>
-                    <button class="theme-opt" data-theme="cyberpunk">
-                        <span class="opt-badge cyberpunk-bg"></span> ⚡ Cyberpunk Neon
-                    </button>
-                    <button class="theme-opt" data-theme="synthwave">
-                        <span class="opt-badge synthwave-bg"></span> 👾 Synthwave Sunset
-                    </button>
-                    <button class="theme-opt" data-theme="matrix">
-                        <span class="opt-badge matrix-bg"></span> 🟢 Matrix Arcade
-                    </button>
-                </div>
-            </div>
         </div>
     </nav>
 
@@ -181,21 +158,21 @@
         <section id="cv" class="cv-section">
             <div class="cv-container">
                 <h2 class="section-title reveal">Curriculum Vitae</h2>
-                <p class="cv-subtitle reveal">Harsha Vardhan DVS &mdash; Game Designer Resume</p>
+                <p class="cv-subtitle reveal">Harsha Vardhan DVS &mdash; Game Designer &amp; Systems Developer</p>
 
                 <div class="cv-actions reveal">
                     <a href="assets/DVS%20Harsha%20Vardhan%20-%20CV%20--1.pdf" download="DVS_Harsha_Vardhan_CV.pdf" class="btn btn-primary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                        Download CV (PDF)
+                        Download PDF CV
                     </a>
                     <a href="assets/DVS%20Harsha%20Vardhan%20-%20CV%20--1.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 6px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                        Open Fullscreen PDF ↗
+                        View Full PDF ↗
                     </a>
                 </div>
 
                 <div class="cv-grid">
-                    <!-- Left Column: Interactive PDF Embedded Viewer -->
+                    <!-- Left Column: Interactive PDF Preview Container -->
                     <div class="cv-preview-card glass reveal">
                         <div class="cv-preview-header">
                             <div class="cv-dots">
@@ -203,61 +180,56 @@
                                 <span class="dot yellow"></span>
                                 <span class="dot green"></span>
                             </div>
-                            <span class="cv-filename">DVS Harsha Vardhan - CV.pdf</span>
+                            <span class="cv-filename">Harsha_Vardhan_CV.pdf</span>
                         </div>
                         <div class="cv-embed-container">
                             <iframe src="assets/DVS%20Harsha%20Vardhan%20-%20CV%20--1.pdf#toolbar=0" title="Harsha Vardhan CV PDF" width="100%" height="620px">
                                 <div class="pdf-fallback">
-                                    <p>Your browser doesn't support embedded PDFs.</p>
-                                    <a href="assets/DVS%20Harsha%20Vardhan%20-%20CV%20--1.pdf" target="_blank" class="btn btn-primary">Open CV PDF Document</a>
+                                    <p>Your browser doesn't support direct PDF preview.</p>
+                                    <a href="assets/DVS%20Harsha%20Vardhan%20-%20CV%20--1.pdf" target="_blank" class="btn btn-primary">Open PDF Document</a>
                                 </div>
                             </iframe>
                         </div>
                     </div>
 
-                    <!-- Right Column: Interactive Resume Summary -->
+                    <!-- Right Column: Personal Design Overview & Artifacts -->
                     <div class="cv-summary-card glass reveal" style="transition-delay: 0.15s;">
-                        <div class="cv-summary-header">
-                            <h3>Resume Overview</h3>
-                            <span class="cv-badge">Game Designer</span>
+                        <div class="cv-human-header">
+                            <h3>Design Philosophy &amp; Practice</h3>
+                            <span class="cv-status-dot"></span>
                         </div>
 
-                        <div class="cv-summary-block">
-                            <div class="cv-block-icon">🎯</div>
-                            <div class="cv-block-body">
-                                <h4>Core Specializations</h4>
-                                <p>Systems design, gameplay mechanics tuning, level flow engineering, rapid prototyping, and immersive world crafting.</p>
+                        <div class="cv-human-content">
+                            <p class="cv-lead-text">
+                                As a Game Designer, I bridge the gap between creative vision and executable mechanics. I focus on sculpting level pacing, verticality, movement feel, and gameplay flow that keeps players immersed.
+                            </p>
+
+                            <div class="cv-craft-section">
+                                <h4>What I Do</h4>
+                                <ul class="cv-craft-list">
+                                    <li><strong>Level &amp; Spatial Design:</strong> Crafting intuitive environments, line-of-sight cues, combat encounter blockouts, and verticality flow.</li>
+                                    <li><strong>Mechanics &amp; Systems Tuning:</strong> Balancing player progression loops, movement dynamics, and game economy values.</li>
+                                    <li><strong>GDD Specification:</strong> Writing comprehensive Game Design Documents, logic flow diagrams, and feature specs ready for programming teams.</li>
+                                </ul>
                             </div>
-                        </div>
 
-                        <div class="cv-summary-block">
-                            <div class="cv-block-icon">🕹️</div>
-                            <div class="cv-block-body">
-                                <h4>Game Development Skills</h4>
-                                <p>Designing combat & progression loops, level blockouts, spatial pacing, character abilities, and user experience (UX) mapping.</p>
-                            </div>
-                        </div>
-
-                        <div class="cv-summary-block">
-                            <div class="cv-block-icon">📄</div>
-                            <div class="cv-block-body">
-                                <h4>Game Design Documents (GDD)</h4>
-                                <p>Comprehensive design specification authoring, mechanic breakdowns, logic trees, balancing spreadsheets, and narrative design.</p>
-                            </div>
-                        </div>
-
-                        <div class="cv-summary-block">
-                            <div class="cv-block-icon">🚀</div>
-                            <div class="cv-block-body">
-                                <h4>Tool Proficiency</h4>
-                                <div class="cv-tags-list">
-                                    <span class="cv-tag">Unity 3D</span>
-                                    <span class="cv-tag">Unreal Engine 5</span>
-                                    <span class="cv-tag">Roblox Studio</span>
-                                    <span class="cv-tag">System Design</span>
-                                    <span class="cv-tag">Level Blockouts</span>
-                                    <span class="cv-tag">GDD Authoring</span>
-                                    <span class="cv-tag">Mechanics Tuning</span>
+                            <div class="cv-links-box">
+                                <h4>Design Work &amp; Artifacts</h4>
+                                <div class="cv-links-grid">
+                                    <a href="https://drive.google.com/drive/folders/1a01lPfDSZuG6iUO0wMKKMNekWL6i9yDc" target="_blank" rel="noopener noreferrer" class="cv-artifact-link">
+                                        <div class="artifact-icon">📁</div>
+                                        <div class="artifact-info">
+                                            <span class="artifact-title">GDD &amp; Design Documents</span>
+                                            <span class="artifact-sub">Google Drive Folder ↗</span>
+                                        </div>
+                                    </a>
+                                    <a href="https://dvsharsha1024.wixstudio.com/portfolio" target="_blank" rel="noopener noreferrer" class="cv-artifact-link">
+                                        <div class="artifact-icon">🌐</div>
+                                        <div class="artifact-info">
+                                            <span class="artifact-title">Design Studio Portfolio</span>
+                                            <span class="artifact-sub">Wix Studio Site ↗</span>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
